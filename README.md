@@ -1,10 +1,20 @@
-# Calculate Pi using Monte Carlo.
+# Monte Carlo.
+## Calculate Pi 
 Estimating the value of pi () by finding the area of a circle within a square. 
 1. Draw a square and inscribe a circle within it.
 2. Scatter a large number of random points uniformly across the square.
 3. Count the number of points that fall inside the circle (e.g., by checking if the distance from the point to the center is less than the radius).
 4. The ratio of points inside the circle to the total number of points is an estimate of the ratio of the circle's area to the square's area: PR^2 / 2R ^2  = P/4
 5. Multiplying this ratio by 4 gives an estimate of P
+ 
+## Calculate an Integral of any function
+1. Draw a rectangle that fits a sergment of a functional graph in a given X interval. 
+2. Generate random dots within it.
+3. Count how many dots fall in between the function graph and X axis. Do this separately for negative and positive y values.
+4. The ratio of the count of inside points to total points multiplied by the area of the rectangle is the value of the integral. Again, negative and positive portions are counted separated and then added. 
+
+Known limitations: 
+- Assuming the function is monotonous when drawing a box to plant the dots in, i.e. assuming the function has a single min and max and it's at either side of the range.
 
 ## Dependencies
 Requires [Ebitengine](https://ebitengine.org/en/documents/install.html) for Go 2D graphics.
@@ -16,7 +26,7 @@ Usage of ./pi:
   -c int
     	Number of samples (default 1000)
   -f string
-    	[sqrt(x) x^2 1/(x+1)(sqrt(x)) x 10 e^x 1/x] (default "x")
+    	Calculate approx integral of one of these functions: [y=e^x y=1/x y=sqrt(x) y=x^2 y=1/(x+1)(sqrt(x)) y=x y=10] (default "y=x")
   -i int
     	Number of samples increment (default 1000)
   -m string
@@ -39,17 +49,22 @@ Calculate Pi in graphical mode starting with 10 samples and increasing by 10 sam
 ```
 ./pi -m pi -c 10 -i 10
 ```
+Ctrl-C from command line to stop.
 
 Square root of x from 1 to 10:
 ```
-./pi -c 100000000 -m func -n 1 -x 10 -f "sqrt(x)"
+./pi -c 100000000 -m func -n 1 -x 10 -f "y=sqrt(x)"
 Starting Monte Carlo for function sqrt(x) with 100000000 points...
 Estimate: 20.414715
 ```
 
 Square of x from 1 to 10:
 ```
-./pi -c 100000000 -m func -n 1 -x 10 -f x^2      
+./pi -c 100000000 -m func -n 1 -x 10 -f "y=x^2"      
 Starting Monte Carlo for function x^2 with 100000000 points...
 Estimate: 332.945685
 ```
+
+And so on.
+
+Formula parser will be added in future versions.

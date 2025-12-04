@@ -8,14 +8,14 @@ var functions map[string]Function
 
 func init() {
 	functions = map[string]Function{
-		"x":                fx,
-		"10":               f10,
-		"e^x":              exp,
-		"1/x":              oneOverX,
-		"sqrt(x)":          sqrt,
-		"x^2":              sqr,
-		"x^5":              x5,
-		"1/(x+1)(sqrt(x))": oneOverXPlusOneTimesSqrtX,
+		"y=x":                fx,
+		"y=10":               f10,
+		"y=e^x":              exp,
+		"y=1/x":              oneOverX,
+		"y=sqrt(x)":          sqrt,
+		"y=x^2":              sqr,
+		"y=x^3":              pow3,
+		"y=1/(x+1)(sqrt(x))": oneOverXPlusOneTimesSqrtX,
 	}
 }
 
@@ -52,6 +52,6 @@ func sqr(x float64) float64 {
 	return math.Pow(x, 2)
 }
 
-func x5(x float64) float64 {
-	return math.Pow(x, 5)
+func pow3(x float64) float64 {
+	return math.Pow(x, 3)
 }
